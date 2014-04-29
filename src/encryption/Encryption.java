@@ -31,6 +31,8 @@ public class Encryption
             Caesar caesarCiper = new Caesar();
             
             caesarCiper.encrypt(fileName);
+            
+            caesarCiper.decrypt(fileName);
                     
         }
         
