@@ -17,9 +17,13 @@ public class charTesting {
         int lowerZ = 'z';
         int upA = 'A';
         int upZ = 'Z';
+        int space = ' ';
+        int pound = '#';
         
         System.out.println("Lowercase between "+ lowerA + " and " + lowerZ);
         System.out.println("Uppercase between "+ upA + " and " + upZ);
+        System.out.println("Space: "+space);
+        System.out.println("Pound: "+ pound);
     }
     
 }

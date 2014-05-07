@@ -49,6 +49,7 @@ public class Caesar
                     }
                     
                 }
+                
                 fileWriter.write(c);
 
             }
