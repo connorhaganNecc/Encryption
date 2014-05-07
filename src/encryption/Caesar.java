@@ -48,8 +48,7 @@ public class Caesar
                         c-=26;//shift it back to the beginning of the alphabet
                     }
                     
-                }
-                
+                }             
                 fileWriter.write(c);
 
             }

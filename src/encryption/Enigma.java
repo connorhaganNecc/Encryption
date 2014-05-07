@@ -26,6 +26,27 @@ public class Enigma
     String innerRingString = "#EJOTYCHMRWAFKPUZDINSXBGLQV";
     char[] innerRing = innerRingString.toCharArray();
     
+    String inFileName;
+    String outFileName;
+    
+    public Enigma()
+    {
+        inFileName="pre";
+        outFileName="post";
+    }
+    public Enigma(String outer, String middle, String inner, String inputFileName, String outputFileName)
+    {
+        outerRing = outer.toCharArray();
+        middleRing = middle.toCharArray();
+        innerRing = inner.toCharArray();
+        outerRingString = outer;
+        middleRingString = middle;
+        innerRingString = inner;
+        
+        inFileName = inputFileName;
+        outFileName = outputFileName;
+    }
+    
     public char[] shiftRight(char[] inCharArray)
     {
         
@@ -40,16 +61,28 @@ public class Enigma
         return inCharArray;
     }
     
-    public void encryt(String fileName)
+    public void encryt()
     {
-        File postEncryption = new File("postEncryption.txt");
+        File postEncryption = new File(outFileName);
+        
+        File inputFile = new File(inFileName);
+        
         resetInnerRing();
         resetOuterRing();
             
         try {
-            fileReader = new FileReader(fileName);
+            if(!inputFile.exists())
+            {
+                inputFile.createNewFile();
+            }
+            if(!postEncryption.exists())
+            {
+                postEncryption.createNewFile();
+            }
+
+            fileReader = new FileReader(inFileName);
             
-            fileWriter = new BufferedWriter(new FileWriter("postEncryption.txt"));
+            fileWriter = new BufferedWriter(new FileWriter(outFileName));
             
             int c = -1;
             
@@ -95,16 +128,27 @@ public class Enigma
         
     }
     
-    public void decrypt(String fileName)
+    public void decrypt()
     {
-        File postDecryption = new File("postDecryption.txt");
+        File postDecryption = new File(outFileName);
+        
+        File inputFile = new File(inFileName);
+        
         resetInnerRing();
         resetOuterRing();
             
         try {
-            fileReader = new FileReader(fileName);
+            if(!postDecryption.exists())
+            {
+                postDecryption.createNewFile();
+            }
+            if(!inputFile.exists())
+            {
+                inputFile.createNewFile();
+            }
+            fileReader = new FileReader(inFileName);
             
-            fileWriter = new BufferedWriter(new FileWriter("postDecryption.txt"));
+            fileWriter = new BufferedWriter(new FileWriter(outFileName));
             
             int c = -1;
             
@@ -240,12 +284,6 @@ public class Enigma
     
     public static void main(String args[])
     {
-        Enigma test = new Enigma();
-        test.returnInnerRing();
-        test.encryt("testFile.txt");
-        test.returnInnerRing();
-        test.decrypt("postEncryption.txt");
-        test.returnInnerRing();
         
     }
     
